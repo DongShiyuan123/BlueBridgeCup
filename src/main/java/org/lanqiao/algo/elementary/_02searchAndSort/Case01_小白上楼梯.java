@@ -2,6 +2,10 @@ package org.lanqiao.algo.elementary._02searchAndSort;
 
 import java.util.Scanner;
 
+/**
+ * 小白正在上楼梯，楼梯有n阶台阶，小白一次可以上1阶，2阶或3阶，
+ * 实现一个方法，计算小白有多少种走完楼梯的方式
+ */
 public class Case01_小白上楼梯 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
