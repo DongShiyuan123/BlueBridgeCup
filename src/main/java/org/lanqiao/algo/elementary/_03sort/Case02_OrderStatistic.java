@@ -27,9 +27,9 @@ public class Case02_OrderStatistic {
 
     public static void main(String[] args) {
         int[] A = {3, 9, 7, 6, 1, 2};
-        int k = selectK(A, 0, A.length - 1, 2);
+        int k = selectK(A, 0, A.length - 1, 6);
         System.out.println(k);
-        Assertions.assertThat(k).isEqualTo(2);
+        Assertions.assertThat(k).isEqualTo(9);
 
         k = selectK(A, 0, A.length - 1, 1);
         Assertions.assertThat(k).isEqualTo(1);

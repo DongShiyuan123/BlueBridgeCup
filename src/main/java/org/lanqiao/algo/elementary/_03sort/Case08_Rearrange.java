@@ -13,69 +13,69 @@ import org.lanqiao.algo.util.Util;
 输出：2 3
 */
 public class Case08_Rearrange {
-  public int[] findSegment(int[] A, int n) {
-    int p1 = -1;
-    int p2 = -1;
-    int max = A[0];
-    int min = A[n - 1];
-    //拓展右端点：更新历史最高，只要右侧出现比历史最高低的，就应该将右边界扩展到此处
-    for (int i = 0; i < n; i++) {
-      // if (i < n - 1 && A[i] > A[i + 1] && p1 == -1) {//出现第一个折点
-      //   p1 = i;
-      //   // if (A[i] > max) {
-      //   //   max = A[i];
-      //   // }
-      // }
-      if (A[i] > max) {
-        max = A[i];
-      }
-      //只要低于历史高峰，就要扩展需排序区间的右端点
-      if (A[i] < max)
-        p2 = i;
+    public int[] findSegment(int[] A, int n) {
+        int p1 = -1;
+        int p2 = -1;
+        int max = A[0];
+        int min = A[n - 1];
+        //拓展右端点：更新历史最高，只要右侧出现比历史最高低的，就应该将右边界扩展到此处
+        for (int i = 0; i < n; i++) {
+            // if (i < n - 1 && A[i] > A[i + 1] && p1 == -1) {//出现第一个折点
+            //   p1 = i;
+            //   // if (A[i] > max) {
+            //   //   max = A[i];
+            //   // }
+            // }
+            if (A[i] > max) {
+                max = A[i];
+            }
+            //只要低于历史高峰，就要扩展需排序区间的右端点
+            if (A[i] < max)
+                p2 = i;
+        }
+        //找左端点：更新历史最低，只要左侧出现比历史最低高的，就应该将左边界扩展到此处
+        for (int i = n - 1; i >= 0; i--) {
+
+            if (A[i] < min) {
+                min = A[i];
+            }
+            if (A[i] > min)
+                p1 = i;
+        }
+
+        if (p1 == -1) {
+            return new int[]{0, 0};
+        }
+        return new int[]{p1, p2};
     }
-    //找左端点：更新历史最低，只要左侧出现比历史最低高的，就应该将左边界扩展到此处
-    for (int i = n - 1; i >= 0; i--) {
 
-      if (A[i] < min) {
-        min = A[i];
-      }
-      if (A[i] > min)
-        p1 = i;
+    public static void main(String[] args) {
+        Case08_Rearrange obj = new Case08_Rearrange();
+        int[] A = {1, 4, 6, 5, 9, 10};
+        int[] res = obj.findSegment(A, 6);
+        Util.print(res);
+
+        A = new int[]{1, 2, 3, 4, 5, 6};
+        res = obj.findSegment(A, A.length);
+        Util.print(res);
+
+        A = new int[]{1, 5, 3, 4, 2, 6, 7};
+        res = obj.findSegment(A, A.length);
+        Util.print(res);
+
+        A = new int[]{2, 3, 7, 5, 4, 6};
+        res = obj.findSegment(A, A.length);
+        Util.print(res);
+        A = new int[]{3, 2, 5, 6, 7, 8};
+        res = obj.findSegment(A, A.length);
+        Util.print(res);
+
+        A = new int[]{2, 8, 7, 10, 9};
+        res = obj.findSegment(A, A.length);
+        Util.print(res);
+
+        A = new int[]{2, 3, 7, 4, 1, 5, 6};
+        res = obj.findSegment(A, A.length);
+        Util.print(res);
     }
-
-    if (p1 == -1) {
-      return new int[]{0, 0};
-    }
-    return new int[]{p1, p2};
-  }
-
-  public static void main(String[] args) {
-    Case08_Rearrange obj = new Case08_Rearrange();
-    int[] A = {1, 4, 6, 5, 9, 10};
-    int[] res = obj.findSegment(A, 6);
-    Util.print(res);
-
-    A = new int[]{1, 2, 3, 4, 5, 6};
-    res = obj.findSegment(A, A.length);
-    Util.print(res);
-
-    A = new int[]{1, 5, 3, 4, 2, 6, 7};
-    res = obj.findSegment(A, A.length);
-    Util.print(res);
-
-    A = new int[]{2, 3, 7, 5, 4, 6};
-    res = obj.findSegment(A, A.length);
-    Util.print(res);
-    A = new int[]{3, 2, 5, 6, 7, 8};
-    res = obj.findSegment(A, A.length);
-    Util.print(res);
-
-    A = new int[]{2, 8, 7, 10, 9};
-    res = obj.findSegment(A, A.length);
-    Util.print(res);
-
-    A = new int[]{2, 3, 7, 4, 1, 5, 6};
-    res = obj.findSegment(A, A.length);
-    Util.print(res);
-  }
 }

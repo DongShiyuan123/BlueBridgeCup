@@ -6,7 +6,7 @@ package org.lanqiao.algo.elementary._01xor;
  */
 public class test {
     public static void main(String[] args) {
-        int n=3;
+        int n = 3;
         for (int i = 1; i <= 10; i++) {
             n = n ^ i;
         }
@@ -17,3 +17,8 @@ public class test {
         System.out.println(n);
     }
 }
+
+
+
+
+
