@@ -8,20 +8,20 @@ package org.lanqiao.algo.book.cc150;
 
 */
 public class _1_2ReverseString {
-  public String reverseString(String iniString) {
-      int len = iniString.length();
-      char[] charArr = new char[len];
-      for(int i = 0; i < len; i++){
-        charArr[i] = iniString.charAt(len-1-i);
-      }
-      return new String(charArr);
-  }
+    public String reverseString(String iniString) {
+        int len = iniString.length();
+        char[] charArr = new char[len];
+        for (int i = 0; i < len; i++) {
+            charArr[i] = iniString.charAt(len - 1 - i);
+        }
+        return new String(charArr);
+    }
 }
 
 /*
 public class Reverse {
     public String reverseString(String iniString) {
         StringBuffer sb = new StringBuffer(iniString);
-        return sb.reverse().toString();
+        return sb.reverse().toString();//api自带
     }
 }*/

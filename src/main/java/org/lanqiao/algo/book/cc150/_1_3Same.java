@@ -12,20 +12,19 @@ import java.util.Arrays;
 "Here you are","Are you here"
 返回：false*/
 public class _1_3Same {
-  public boolean checkSam(String stringA, String stringB) {
-    int len1 = stringA.length();
-    int len2 = stringB.length();
-    if (len1 != len2) {
-      return false;
+    public boolean checkSam(String stringA, String stringB) {
+        int len1 = stringA.length();
+        int len2 = stringB.length();
+        if (len1 != len2) {
+            return false;
+        }
+        //转成字符数组
+        char[] arr1 = stringA.toCharArray();
+        char[] arr2 = stringB.toCharArray();
+        //对它们排序
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+
+        return Arrays.equals(arr1, arr2);
     }
-    //转成字符数组
-    char[] arr1 = stringA.toCharArray();
-    char[] arr2 = stringB.toCharArray();
-    //对它们排序
-    Arrays.sort(arr1);
-    Arrays.sort(arr2);
-
-    return Arrays.equals(arr1, arr2);
-  }
-
 }
