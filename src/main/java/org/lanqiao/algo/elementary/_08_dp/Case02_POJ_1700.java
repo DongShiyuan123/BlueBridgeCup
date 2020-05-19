@@ -30,48 +30,49 @@ Sample Output
 17
  */
 public class Case02_POJ_1700 {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int T = sc.nextInt();
-    for (int i = 0; i < T; i++) {
-      int n = sc.nextInt();
-      int[] speed = new int[n];
-      for (int j = 0; j < n; j++) {
-        speed[j] = sc.nextInt();
-      }
-      //排序
-      Arrays.sort(speed);
-      f(n, speed);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        for (int i = 0; i < T; i++) {
+            int n = sc.nextInt();
+            int[] speed = new int[n];
+            for (int j = 0; j < n; j++) {
+                speed[j] = sc.nextInt();
+            }
+            //排序
+            Arrays.sort(speed);
+            f(n, speed);
+        }
     }
-  }
 
-  /**
-   * speed已经排序
-   * @param n
-   * @param speed
-   */
-  private static void f(int n, int[] speed) {
-    int left = n;
-    int ans = 0;
-    while (left > 0) {
-      if (left == 1) {//只有1人
-        ans += speed[0];
-        break;
-      } else if (left == 2) {//只有两人
-        ans += speed[1];
-        break;
-      } else if (left == 3) {//有三人
-        ans += speed[2] + speed[0] + speed[1];
-        break;
-      } else {
-        //1，2出发，1返回，最后两名出发，2返回
-        int s1 = speed[1] + speed[0] + speed[left - 1] + speed[1];
-        //1，3出发，1返回，1，4出发，1返回，1，2过河
-        int s2 = speed[left - 1] + speed[left - 2] + 2 * speed[0];
-        ans += min(s1, s2);
-        left -= 2;//左侧是渡河的起点，left代表左侧的剩余人数
-      }
+    /**
+     * speed已经排序
+     *
+     * @param n
+     * @param speed
+     */
+    private static void f(int n, int[] speed) {
+        int left = n;
+        int ans = 0;
+        while (left > 0) {
+            if (left == 1) {//只有1人
+                ans += speed[0];
+                break;
+            } else if (left == 2) {//只有两人
+                ans += speed[1];
+                break;
+            } else if (left == 3) {//有三人
+                ans += speed[2] + speed[0] + speed[1];
+                break;
+            } else {
+                //1，2出发，1返回，最后两名出发，2返回(整个过程只与前两个数有关，后面的数移动过后，直接删除）
+                int s1 = speed[1] + speed[0] + speed[left - 1] + speed[1];
+                //1，3出发，1返回  1，4出发，1返回，1，2过河(整个过程只与第一个数有关，后面的数移动过后，直接删除）
+                int s2 = speed[left - 1] + speed[left - 2] + 2 * speed[0];
+                ans += min(s1, s2);
+                left -= 2;//左侧是渡河的起点，left代表左侧的剩余人数（删除最后两个人）
+            }
+        }
+        System.out.println(ans);
     }
-    System.out.println(ans);
-  }
 }

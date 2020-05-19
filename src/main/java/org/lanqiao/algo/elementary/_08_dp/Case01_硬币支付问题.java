@@ -35,34 +35,35 @@ import static java.lang.Math.min;
 6
 */
 public class Case01_硬币支付问题 {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-    for (int i = 0; i < 6; i++) {
-      cnts[i] = sc.nextInt();
+        for (int i = 0; i < 6; i++) {
+            cnts[i] = sc.nextInt();
+        }
+        int A = sc.nextInt();
+        int res = f(A, 5);
+        System.out.println(res);
     }
-    int A = sc.nextInt();
-    int res = f(A, 5);
-    System.out.println(res);
-  }
 
-  static int[] cnts = new int[6];
-  static int[] coins = {1, 5, 10, 50, 100, 500};
+    static int[] cnts = new int[6];
+    static int[] coins = {1, 5, 10, 50, 100, 500};
 
-  /**
-   * 尽量先用大面值,因为不用大面值,将使用更多的小面值硬币,一定得不到最优解
-   * @param A
-   * @param cur
-   * @return
-   */
-  static int f(int A, int cur) {
-    if (A <= 0) return 0;
-    if (cur == 0) return A;
+    /**
+     * 尽量先用大面值,因为不用大面值,将使用更多的小面值硬币,一定得不到最优解
+     *
+     * @param A
+     * @param cur
+     * @return
+     */
+    static int f(int A, int cur) {
+        if (A <= 0) return 0;
+        if (cur == 0) return A;
 
-    int coinValue = coins[cur];
-    int x = A / coinValue;//金额有多少个coinValue
-    int cnt = cnts[cur];//当前面值的硬币有cnt个
-    int t = min(x, cnt);
-    return t + f(A - t * coinValue, cur - 1);//用t个当前面值,剩下的继续处理
-  }
+        int coinValue = coins[cur];
+        int x = A / coinValue;//金额有多少个coinValue
+        int cnt = cnts[cur];//当前面值的硬币有cnt个
+        int t = min(x, cnt);
+        return t + f(A - t * coinValue, cur - 1);//用t个当前面值,剩下的继续处理
+    }
 }
